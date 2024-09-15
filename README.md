@@ -4,8 +4,7 @@ Stylish editor that works with ChatGPT and Gemini
 
 # Demo
 
-<video src="https://github.com/yasudacloud/strapi-plugin-prompt-editor/raw/main/docs/demo.mp4" controls="true"></video>
-
+![demo](https://github.com/yasudacloud/strapi-plugin-prompt-editor/raw/main/docs/demo.gif "Demo")
 ![ss1](https://github.com/yasudacloud/strapi-plugin-prompt-editor/blob/main/docs/screenshot1.png?raw=true)
 ![ss2](https://github.com/yasudacloud/strapi-plugin-prompt-editor/blob/main/docs/screenshot2.png?raw=true)
 
