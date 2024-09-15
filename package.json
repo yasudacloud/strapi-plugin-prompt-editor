@@ -1,0 +1,76 @@
+{
+  "name": "prompt-editor",
+  "version": "1.0.0",
+  "description": "This editor is capable of integrating with AI, enhancing your writing and editing experience.",
+  "keywords": [],
+  "license": "MIT",
+  "author": "yasudacloud <hello@yasuda.cloud>",
+  "type": "commonjs",
+  "exports": {
+    "./package.json": "./package.json",
+    "./strapi-admin": {
+      "types": "./dist/admin/src/index.d.ts",
+      "source": "./admin/src/index.ts",
+      "import": "./dist/admin/index.mjs",
+      "require": "./dist/admin/index.js",
+      "default": "./dist/admin/index.js"
+    },
+    "./strapi-server": {
+      "types": "./dist/server/src/index.d.ts",
+      "source": "./server/src/index.ts",
+      "import": "./dist/server/index.mjs",
+      "require": "./dist/server/index.js",
+      "default": "./dist/server/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "./strapi-server.js"
+  ],
+  "scripts": {
+    "build": "strapi-plugin build",
+    "test:ts:back": "run -T tsc -p server/tsconfig.json",
+    "test:ts:front": "run -T tsc -p admin/tsconfig.json",
+    "verify": "strapi-plugin verify",
+    "watch": "strapi-plugin watch",
+    "watch:link": "strapi-plugin watch:link"
+  },
+  "dependencies": {
+    "@blocknote/core": "^0.15.7",
+    "@blocknote/mantine": "^0.15.7",
+    "@blocknote/react": "^0.15.7",
+    "@google/generative-ai": "^0.17.2",
+    "@strapi/design-system": "^2.0.0-rc.10",
+    "@strapi/icons": "^2.0.0-rc.10",
+    "chatgpt": "^5.2.5",
+    "marked": "^14.1.2",
+    "react-intl": "^6.6.8"
+  },
+  "devDependencies": {
+    "@strapi/sdk-plugin": "^5.2.0",
+    "@strapi/strapi": "^4.25.10",
+    "@strapi/typescript-utils": "^4.25.10",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "styled-components": "^6.1.13",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "@strapi/sdk-plugin": "^5.2.0",
+    "@strapi/strapi": "^4.25.10",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "styled-components": "^6.1.13"
+  },
+  "strapi": {
+    "kind": "plugin",
+    "name": "prompt-editor",
+    "displayName": "Prompt Editor",
+    "description": "A stylish editor enhanced by AI integration with Strapi."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "prompt_editor_configs",
+  "info": {
+    "singularName": "prompt-editor-config",
+    "pluralName": "prompt-editor-configs",
+    "displayName": "promptEditorConfig"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
+  "attributes": {
+    "user_id": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "chatgpt_text_config": {
+      "type": "json",
+      "required": true,
+      "default": {}
+    },
+    "chatgpt_image_config": {
+      "type": "json",
+      "required": true,
+      "default": {}
+    },
+    "gemini_text_config": {
+      "type": "json",
+      "required": true,
+      "default": {}
+    }
+  }
+}
