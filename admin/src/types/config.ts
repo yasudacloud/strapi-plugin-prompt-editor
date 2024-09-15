@@ -11,6 +11,8 @@ export interface Config {
   gemini_text_config: {
     model: string
   }
+  enableChatGPT?: boolean
+  enableGemini?: boolean
 }
 
 export interface Model {

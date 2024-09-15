@@ -10,8 +10,9 @@ const chatGPT = ({strapi}: { strapi: Strapi }) => ({
 
     const {ChatGPTAPI} = await import('chatgpt')
     const {prompt, model, temperature} = JSON.parse(ctx.request.body)
+    const apiKey = strapi.config.get<string>("plugin.prompt-editor.openai_api_key")
     const api = new ChatGPTAPI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey,
       completionParams: {
         model,
         temperature: Number.parseFloat(temperature),
@@ -39,14 +40,15 @@ const chatGPT = ({strapi}: { strapi: Strapi }) => ({
       return;
     }
 
-    const {prompt, size,model} = JSON.parse(ctx.request.body)
+    const {prompt, size, model} = JSON.parse(ctx.request.body)
+    const apiKey = strapi.config.get<string>("plugin.prompt-editor.openai_api_key")
     const response = await fetch(
       'https://api.openai.com/v1/images/generations',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           prompt,

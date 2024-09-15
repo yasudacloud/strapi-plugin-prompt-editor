@@ -8,7 +8,14 @@ const config = ({strapi}: { strapi: Strapi }) => ({
 
     const configService = strapi.plugin('prompt-editor').service('config')
     const config = await configService.getConfig(user.id)
-    ctx.body = JSON.stringify(config)
+    const chatgptApiKey = strapi.config.get<string>("plugin.prompt-editor.openai_api_key")
+    const geminiApiKey = strapi.config.get<string>("plugin.prompt-editor.gemini_api_key")
+
+    ctx.body = JSON.stringify({
+      enableChatGPT: !!chatgptApiKey,
+      enableGemini: !!geminiApiKey,
+      ...config
+    })
   },
   async updateConfig(ctx) {
     const {

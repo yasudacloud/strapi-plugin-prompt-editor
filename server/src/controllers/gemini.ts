@@ -10,7 +10,8 @@ const gemini = ({strapi}: { strapi: Strapi }) => ({
     }
 
     const {prompt, model} = JSON.parse(ctx.request.body)
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const apiKey = strapi.config.get<string>("plugin.prompt-editor.gemini_api_key")
+    const genAI = new GoogleGenerativeAI(apiKey);
     const generativeModel = genAI.getGenerativeModel({model});
     const result = await generativeModel.generateContentStream(prompt)
 

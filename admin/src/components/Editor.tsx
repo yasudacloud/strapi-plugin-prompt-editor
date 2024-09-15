@@ -198,12 +198,18 @@ const Editor = (props: any) => {
   });
   const getCustomSlashMenuItems: any = (
     editor: BlockNoteEditor
-  ): any[] => [
-    chatgptTextItem(),
-    chatgptImageItem(),
-    geminiTextItem(),
-    ...getDefaultReactSlashMenuItems(editor),
-  ]
+  ): any[] => {
+    const items = [
+      ...getDefaultReactSlashMenuItems(editor),
+    ]
+    if (config?.enableGemini) {
+      items.unshift(geminiTextItem())
+    }
+    if (config?.enableChatGPT) {
+      items.unshift(chatgptTextItem(), chatgptImageItem())
+    }
+    return items
+  }
 
   const onClosePopup = async (prompt: string, size?: string) => {
     setShowPopup(false)
