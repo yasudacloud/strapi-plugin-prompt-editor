@@ -93,6 +93,44 @@ Selectable models can be changed from config.
 }
 ```
 
+# Customize API response
+The fields of prompt-editor are in JSON format by default when retrieved through the API.
+
+Therefore, we recommend implementing middlewares and converting them to HTML.
+```
+npm i @blocknote/server-util
+```
+### ex) src/api/article/middlewares/content-converter.ts
+```
+
+import {Strapi} from '@strapi/strapi';
+import {ServerBlockNoteEditor} from "@blocknote/server-util";
+
+export default (config, {strapi}: { strapi: Strapi }) => {
+  return async (ctx, next) => {
+    await next()
+
+    const editor = ServerBlockNoteEditor.create();
+    const data = structuredClone(ctx.response.body.data)
+    const convertToHTML = async (item: any) => {
+      if (item.attributes.content === null) {
+        item.attributes.content = ''
+      } else {
+        try {
+          const block = JSON.parse(item.attributes.content)
+          item.attributes.content = await editor.blocksToHTMLLossy(block)
+        } catch (e) {
+          console.error(e)
+        }
+      }
+      return item
+    }
+    ctx.response.body.data = await Promise.all(data.map(item => convertToHTML(item)))
+  }
+}
+
+```
+
 # Thanks
 The editor of this plugin is based on BlockNote.
 
