@@ -1,5 +1,5 @@
 {
-  "name": "prompt-editor",
+  "name": "strapi-plugin-prompt-editor",
   "version": "1.0.0",
   "description": "This editor is capable of integrating with AI, enhancing your writing and editing experience.",
   "keywords": [],
@@ -25,7 +25,8 @@
   },
   "files": [
     "dist",
-    "./strapi-server.js"
+    "./strapi-server.js",
+    "./strapi-admin.js"
   ],
   "scripts": {
     "build": "strapi-plugin build",
