@@ -1,8 +1,14 @@
 {
   "name": "strapi-plugin-prompt-editor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This editor is capable of integrating with AI, enhancing your writing and editing experience.",
-  "keywords": [],
+  "keywords": [
+    "strapi",
+    "plugin",
+    "richeditor",
+    "chatgpt",
+    "gemini"
+  ],
   "license": "MIT",
   "author": "yasudacloud <hello@yasuda.cloud>",
   "type": "commonjs",
@@ -75,5 +81,9 @@
     "name": "prompt-editor",
     "displayName": "Prompt Editor",
     "description": "A stylish editor enhanced by AI integration with Strapi."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yasudacloud/strapi-plugin-prompt-editor"
   }
 }
