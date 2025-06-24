@@ -1,14 +1,14 @@
-import {Page} from '@strapi/design-system';
-import {Switch, Route} from 'react-router-dom';
-import Setting from "./Setting";
+import { Page } from '@strapi/design-system';
+import { Routes, Route } from 'react-router-dom';
+import Setting from './Setting';
 
 const App = () => {
   return (
-    <Switch>
-      <Route path={`/settings/prompt-editor`} component={Setting}/>
-      <Route path="*" component={Page.Error}/>
-    </Switch>
+    <Routes>
+      <Route path={`/settings/prompt-editor`} element={<Setting />} />
+      <Route path="*" element={<Page.Error />} />
+    </Routes>
   );
 };
 
-export {App};
+export { App };

@@ -1,32 +1,31 @@
-import {getTranslation} from './utils/getTranslation';
-import {PLUGIN_ID} from './pluginId';
-import {Initializer} from './components/Initializer';
+import { getTranslation } from './utils/getTranslation';
+import { Initializer } from './components/Initializer';
 import pluginPkg from '../../package.json';
-import PluginIcon from './components/PluginIcon'
+import PluginIcon from './components/PluginIcon';
 
 const name = pluginPkg.strapi.name;
-const pluginId = 'prompt-editor'
+const pluginId = 'prompt-editor';
 
 export default {
   register(app: any) {
     app.customFields.register({
       name,
       type: 'richtext',
-      plugin: 'prompt-editor',
       pluginId,
       icon: PluginIcon,
       intlLabel: {
         id: getTranslation('app.title'),
-        defaultMessage: 'Prompt Editor'
+        defaultMessage: 'Prompt Editor',
       },
       intlDescription: {
         id: getTranslation('app.about'),
-        defaultMessage: 'A stylish editor enhanced by AI integration with Strapi.'
+        defaultMessage: 'A stylish editor enhanced by AI integration with Strapi.',
       },
       components: {
-        Input: async () => {
-          return await import('./components/Editor')
-        },
+        Input: async () =>
+          import('./components/Editor').then((module) => ({
+            default: module.Editor,
+          })),
       },
       options: {
         base: [],
@@ -43,19 +42,18 @@ export default {
                 },
                 description: {
                   id: getTranslation('app.required.description'),
-                  defaultMessage:
-                    "Editor Required Entries"
+                  defaultMessage: 'Editor Required Entries',
                 },
-              }]
-          }
+              },
+            ],
+          },
         ],
-      }
+      },
     });
     app.registerPlugin({
-      id: PLUGIN_ID,
+      id: pluginId,
       initializer: Initializer,
-      isReady: true,
-      name
+      name,
     });
 
     app.createSettingSection(
@@ -64,28 +62,29 @@ export default {
         intlLabel: {
           id: `${pluginId}.app.title`,
           defaultMessage: 'Prompt Editor',
-        }
+        },
       },
       [
         {
           intlLabel: {
             id: `${pluginId}.setting.name`,
-            defaultMessage: 'Editor Setting'
+            defaultMessage: 'Editor Setting',
           },
           id: 'setting',
           to: `/settings/${pluginId}`,
           Component: async () => {
             return import('./pages/Setting');
-          }
-        }
-      ])
+          },
+        },
+      ]
+    );
   },
   async registerTrads(app: any) {
-    const {locales} = app;
+    const { locales } = app;
     const importedTranslations = await Promise.all(
       (locales as string[]).map((locale) => {
         return import(`./translations/${locale}.json`)
-          .then(({default: data}) => {
+          .then(({ default: data }) => {
             return {
               data,
               locale,

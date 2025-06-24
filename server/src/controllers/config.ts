@@ -1,74 +1,68 @@
-import {Strapi} from "@strapi/strapi";
+import type { Core } from '@strapi/strapi';
 
-const config = ({strapi}: { strapi: Strapi }) => ({
+const config = ({ strapi }: { strapi: Core.Strapi }) => ({
   async getConfig(ctx) {
     const {
-      state: {user},
+      state: { user },
     } = ctx;
 
-    const configService = strapi.plugin('prompt-editor').service('config')
-    const config = await configService.getConfig(user.id)
-    const chatgptApiKey = strapi.config.get<string>("plugin.prompt-editor.openai_api_key")
-    const geminiApiKey = strapi.config.get<string>("plugin.prompt-editor.gemini_api_key")
+    const configService = strapi.plugin('prompt-editor').service('config');
+    const config = await configService.getConfig(user.id);
+    const chatgptApiKey = strapi.config.get<string>('plugin::prompt-editor.openai_api_key');
+    const geminiApiKey = strapi.config.get<string>('plugin::prompt-editor.gemini_api_key');
 
     ctx.body = JSON.stringify({
       enableChatGPT: !!chatgptApiKey,
       enableGemini: !!geminiApiKey,
-      ...config
-    })
+      ...config,
+    });
   },
   async updateConfig(ctx) {
     const {
-      state: {user},
-    } = ctx
-    const {params} = JSON.parse(ctx.request.body)
-    const configService = strapi.plugin('prompt-editor').service('config')
-    await configService.update(user.id, params)
+      state: { user },
+    } = ctx;
+    const { params } = JSON.parse(ctx.request.body);
+    const configService = strapi.plugin('prompt-editor').service('config');
+    await configService.update(user.id, params);
     ctx.response.status = 204;
-    ctx.body = ''
+    ctx.body = '';
   },
   async getModels(ctx) {
-    const chatGPTText = strapi.config.get<string[]>("plugin.prompt-editor.chatGPTTextModels", [
+    const chatGPTText = strapi.config.get<string[]>('plugin::prompt-editor.chatGPTTextModels', [
       'gpt-4o',
       'gpt-4o-mini',
       'gpt-4',
-      'gpt-3.5-turbo'
+      'gpt-3.5-turbo',
     ]);
-    const chatGPTImage = strapi.config.get<{
-      name: string,
-      size: string[]
-    }[]>("plugin.prompt-editor.chatGPTImageModels", [
+    const chatGPTImage = strapi.config.get<
+      {
+        name: string;
+        size: string[];
+      }[]
+    >('plugin::prompt-editor.chatGPTImageModels', [
       {
         name: 'dall-e-2',
-        size: [
-          '256x256',
-          '512x512',
-          '1024x1024'
-        ]
+        size: ['256x256', '512x512', '1024x1024'],
       },
       {
         name: 'dall-e-3',
-        size: [
-          '1024x1024',
-          '1792x1024',
-          '1024x1792'
-        ]
-      }
-    ])
-    const geminiText = strapi.config.get<string[]>("plugin.prompt-editor.geminiTextModels", [
+        size: ['1024x1024', '1792x1024', '1024x1792'],
+      },
+    ]);
+    const geminiText = strapi.config.get<string[]>('plugin::prompt-editor.geminiTextModels', [
       'gemini-1.5-flash',
       'gemini-1.5-pro',
       'gemini-1.0-pro',
-    ])
+    ]);
 
     // support models
     const models = {
       chatGPTText,
       chatGPTImage,
-      geminiText
-    }
-    ctx.body = JSON.stringify(models)
-  }
-})
+      geminiText,
+    };
+    ctx.body = JSON.stringify(models);
+  },
+});
 
 export default config;

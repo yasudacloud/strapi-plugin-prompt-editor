@@ -1,8 +1,8 @@
-import {Strapi} from "@strapi/strapi";
+import type { Core } from '@strapi/strapi';
 
 const contentTypeId = 'plugin::prompt-editor.prompt-editor-config'
 
-const config = ({strapi}: { strapi: Strapi }) => ({
+const config = ({strapi}: { strapi: Core.Strapi }) => ({
   async getConfig(userId: number) {
     const config = await strapi
       .query(contentTypeId)
