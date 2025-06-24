@@ -5,7 +5,7 @@ const opts = {
   port: 4723,
   hostname: '127.0.0.1',
   capabilities: {
-    platformName: 'mac',
+    platformName: process.env.APPIUM_PLATFORM ?? 'mac',
     browserName: 'chrome',
     'appium:automationName': 'Chromium',
   },
@@ -104,6 +104,7 @@ async function main() {
   ) {
     throw new Error(`text not expected: ${text}`);
   }
+  await client.close();
 }
 
-main().then((r) => console.log('@complete'));
+main().then(() => console.log('@complete'));

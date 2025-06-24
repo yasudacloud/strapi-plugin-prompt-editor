@@ -7,10 +7,10 @@
     "plugin",
     "richeditor",
     "chatgpt",
-    "gemini"
+    "gemini",
+    "llm"
   ],
   "license": "MIT",
-  "author": "yasudacloud <hello@yasuda.cloud>",
   "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",
@@ -65,8 +65,20 @@
     "displayName": "Prompt Editor",
     "description": "A stylish editor enhanced by AI integration with Strapi."
   },
+  "author": {
+    "name": "yasudacloud",
+    "url": "https://github.com/yasudacloud/strapi-plugin-prompt-editor"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/yasudacloud/strapi-plugin-prompt-editor"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/yasudacloud/strapi-plugin-prompt-editor/issues"
+  },
+  "maintainers": [
+    {
+      "name": "yasudacloud"
+    }
+  ]
 }
