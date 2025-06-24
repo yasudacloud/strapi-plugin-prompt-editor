@@ -104,7 +104,7 @@ async function main() {
   ) {
     throw new Error(`text not expected: ${text}`);
   }
-  await client.close();
+  await client.deleteSession();
 }
 
 main().then(() => console.log('@complete'));
