@@ -1,6 +1,7 @@
 # strapi-plugin-prompt-editor
 
-Stylish editor that works with ChatGPT and Gemini
+Stylish editor that works with ChatGPT and Gemini.
+Supports Strapi v5🎉
 
 # Demo
 
