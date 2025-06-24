@@ -1,10 +1,21 @@
+const tokenKey = 'jwtToken';
+
 export const getToken = () => {
-  let token = sessionStorage.getItem('jwtToken') ?? ''
-  if (!token) {
-    token = localStorage.getItem('jwtToken') ?? ''
+  const sessionToken = sessionStorage.getItem('jwtToken') ?? '';
+  if (sessionToken) {
+    return JSON.parse(sessionToken);
   }
-  if (!token) {
-    throw new Error('Not found jwtToken')
+  const localToken = localStorage.getItem('jwtToken') ?? '';
+  if (localToken) {
+    return JSON.parse(localToken);
   }
-  return token.replaceAll('"', '')
-}
+  const cookieValue = document.cookie
+    .split(';')
+    .find((cookie) => cookie.trim().startsWith(`${tokenKey}=`));
+
+  if (cookieValue) {
+    const value = cookieValue.split('=')[1];
+    return decodeURIComponent(value.trim());
+  }
+  return '';
+};

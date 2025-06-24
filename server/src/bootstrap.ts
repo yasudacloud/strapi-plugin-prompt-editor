@@ -1,6 +1,5 @@
-import {Strapi} from "@strapi/strapi";
+import type { Core } from '@strapi/strapi';
 
-const bootstrap = ({strapi}: { strapi: Strapi }) => {
-};
+const bootstrap = ({ strapi }: { strapi: Core.Strapi }) => {};
 
 export default bootstrap;

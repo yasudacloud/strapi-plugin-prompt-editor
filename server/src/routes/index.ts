@@ -6,18 +6,8 @@ export default [
   },
   {
     method: 'POST',
-    path: '/chatgpt/image',
-    handler: 'chatGPT.generateImage',
-  },
-  {
-    method: 'POST',
     path: '/gemini/text',
     handler: 'gemini.generateText',
-  },
-  {
-    method: 'POST',
-    path: '/image',
-    handler: 'image.blob',
   },
   {
     method: 'GET',

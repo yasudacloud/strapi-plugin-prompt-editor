@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-prompt-editor",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "This editor is capable of integrating with AI, enhancing your writing and editing experience.",
   "keywords": [
     "strapi",
@@ -30,9 +30,7 @@
     }
   },
   "files": [
-    "dist",
-    "./strapi-server.js",
-    "./strapi-admin.js"
+    "dist"
   ],
   "scripts": {
     "build": "strapi-plugin build",
@@ -43,38 +41,23 @@
     "watch:link": "strapi-plugin watch:link"
   },
   "dependencies": {
-    "@blocknote/core": "^0.15.7",
-    "@blocknote/mantine": "^0.15.7",
-    "@blocknote/react": "^0.15.7",
-    "@google/generative-ai": "^0.17.2",
-    "@strapi/design-system": "^1.6.3",
-    "@strapi/icons": "^1.6.3",
+    "@blocknote/core": "^0.31.3",
+    "@blocknote/mantine": "^0.31.3",
+    "@blocknote/react": "^0.31.3",
+    "@google/generative-ai": "^0.24.1",
+    "@strapi/design-system": "^2.0.0-rc.27",
+    "@strapi/icons": "^2.0.0-rc.27",
     "chatgpt": "^5.2.5",
-    "marked": "^14.1.2",
-    "react-intl": "^6.6.8"
+    "marked": "^15.0.12",
+    "motion": "^12.18.1",
+    "react": "^18.3.1",
+    "react-intl": "^7.1.11"
   },
   "devDependencies": {
-    "@strapi/sdk-plugin": "^5.2.0",
-    "@strapi/strapi": "^4.25.10",
-    "@strapi/typescript-utils": "^4.25.10",
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.34",
-    "prettier": "^3.3.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^5.3.4",
-    "styled-components": "^5.3.3",
-    "typescript": "^5.5.4"
+    "webdriverio": "^9.16.2"
   },
   "peerDependencies": {
-    "@strapi/sdk-plugin": "^5.2.0",
-    "@strapi/strapi": "^4.25.10",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^5.3.4",
-    "styled-components": "^5.3.3"
+    "@strapi/strapi": "^5.16.0"
   },
   "strapi": {
     "kind": "plugin",

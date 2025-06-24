@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 import { PLUGIN_ID } from '../pluginId';
 
@@ -7,10 +7,8 @@ type InitializerProps = {
 };
 
 const Initializer = ({ setPlugin }: InitializerProps) => {
-  const ref = useRef(setPlugin);
-
   useEffect(() => {
-    ref.current(PLUGIN_ID);
+    setPlugin(PLUGIN_ID);
   }, []);
 
   return null;

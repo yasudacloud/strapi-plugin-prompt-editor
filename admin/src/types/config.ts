@@ -1,25 +1,17 @@
 export interface Config {
-  user_id: number
+  user_id: number;
   chatgpt_text_config: {
-    model: string
-    temperature: number
-  }
-  chatgpt_image_config: {
-    model: string
-    size: string
-  }
+    model: string;
+    temperature: number;
+  };
   gemini_text_config: {
-    model: string
-  }
-  enableChatGPT?: boolean
-  enableGemini?: boolean
+    model: string;
+  };
+  enableChatGPT?: boolean;
+  enableGemini?: boolean;
 }
 
 export interface Model {
-  chatGPTText: string[]
-  chatGPTImage: {
-    name: string
-    size: string[]
-  }[]
-  geminiText: string[]
+  chatGPTText: string[];
+  geminiText: string[];
 }

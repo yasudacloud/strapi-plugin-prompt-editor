@@ -1,10 +1,10 @@
-import {Strapi} from "@strapi/strapi";
+import type { Core } from '@strapi/strapi';
 
-const register = ({strapi}: { strapi: Strapi }) => {
+const register = ({ strapi }: { strapi: Core.Strapi }) => {
   strapi.customFields.register({
     name: 'prompt-editor',
     plugin: 'prompt-editor',
-    type: 'richtext'
+    type: 'richtext',
   });
 };
 
